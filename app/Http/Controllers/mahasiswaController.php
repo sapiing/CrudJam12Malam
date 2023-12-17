@@ -19,8 +19,8 @@ class mahasiswaController extends Controller
             $data = mahasiswa::where('nim', 'like', "$katakunci")->orWhere('nama', 'like', "%$katakunci%")->orWhere('jurusan', 'like', "%$katakunci%")->paginate($jumlahbaris);
         } else {
 
+            $data = mahasiswa::orderBy('nim', 'desc')->paginate($jumlahbaris);
         }
-        $data = mahasiswa::orderBy('nim', 'desc')->paginate($jumlahbaris);
         return view('mahasiswa.index')->with('data', $data);
     }
 
